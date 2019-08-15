@@ -1,0 +1,12 @@
+<?php
+
+namespace {LESCRIPT_NAMESPACE}\Requests;
+
+class Request
+{
+    {LESCRIPT_REQUEST_PROPERTIES}
+
+    {LESCRIPT_REQUEST_CONSTRUCTOR}
+
+    {LESCRIPT_REQUEST_GETTERS}
+}
