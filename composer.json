@@ -7,10 +7,21 @@
     "preferred-install": "dist",
     "sort-packages": true
   },
+  "require": {
+    "php": "^7.1.3",
+    "illuminate/console": "5.*"
+  },
   "autoload": {
     "psr-4": {
       "Arquivei\\BoltonsScaffolding\\Core\\": "core/",
       "Arquivei\\BoltonsScaffolding\\": "."
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Arquivei\\BoltonsScaffolding\\Laravel\\Providers\\LescriptProvider"
+      ]
     }
   }
 }
