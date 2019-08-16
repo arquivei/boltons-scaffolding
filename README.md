@@ -19,7 +19,7 @@ a terminal and type:
 
 ---------------
 
-##Known issues and limitations
+## Known issues and limitations
 * The LogInterface has no namespace assigned to it, you'll have to fix that yourself
 * The code might not me properly formatted (CTRL+ALT+L in PHPStorm should fix it)
 
