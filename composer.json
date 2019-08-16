@@ -1,6 +1,7 @@
 {
   "name": "arquivei/boltons-scaffolding",
   "type": "project",
+  "license":"MIT",
   "description": "This project is used by our developers to speed up the coding of new use cases",
   "config": {
     "optimize-autoloader": true,

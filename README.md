@@ -1,5 +1,7 @@
 # Lescript
 
+[![Latest Stable Version](https://poser.pugx.org/arquivei/boltons-scaffolding/v/stable)](https://packagist.org/packages/arquivei/boltons-scaffolding) [![Total Downloads](https://poser.pugx.org/arquivei/boltons-scaffolding/downloads)](https://packagist.org/packages/arquivei/boltons-scaffolding) 
+
 In this project you'll find the infamous **Lescript** and everything you need to build a 
 skeleton use case in the architecture currently used by the Boltons House.
 
