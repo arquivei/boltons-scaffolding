@@ -16,6 +16,19 @@ What this is not:
 
 `composer require-dev arquivei/boltons-scaffolding`
 
+If you're using semitic versioning in your dependencies, you can just add to your composer.json:
+
+```json
+
+    "require-dev": {
+        "arquivei/boltons-scaffolding": "א.ב"
+    },
+```
+
+and then run
+
+`composer update`
+
 ## Usage
 
 * Set up your configuration file (config.example.json is included to help you)
