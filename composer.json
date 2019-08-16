@@ -1,5 +1,16 @@
 {
   "name": "arquivei/boltons-scaffolding",
   "type": "project",
-  "description": "This project is used by our developers to speed up the coding of new use cases"
+  "description": "This project is used by our developers to speed up the coding of new use cases",
+  "config": {
+    "optimize-autoloader": true,
+    "preferred-install": "dist",
+    "sort-packages": true
+  },
+  "autoload": {
+    "psr-4": {
+      "Arquivei\\BoltonsScaffolding\\Core\\": "core/",
+      "Arquivei\\BoltonsScaffolding\\": "."
+    }
+  }
 }
