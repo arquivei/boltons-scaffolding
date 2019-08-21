@@ -45,7 +45,7 @@ class Utils
     public function getDeclaration(string $className)
     {
         $propertyName = lcfirst($className);
-        return "public \${$propertyName};";
+        return "private \${$propertyName};";
     }
 
     public function getWithMethod(string $className)
