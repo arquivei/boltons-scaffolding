@@ -7,31 +7,28 @@ use {LESCRIPT_NAMESPACE}\Entities\Status;
 use {LESCRIPT_NAMESPACE}\Requests\Request;
 use {LESCRIPT_NAMESPACE}\Responses\ResponseInterface;
 use {LESCRIPT_NAMESPACE}\Responses\Error\Response as ErrorResponse;
+{LESCRIPT_IMPORT_GATEWAYS}
+{LESCRIPT_IMPORT_RULES}
 
 class UseCase
 {
     private $response;
+    {LESCRIPT_DECLARE_GATEWAYS}
     private $logger;
 
-    public function __construct(
-        LogInterface $logger
-    ) {
-        $this->logger = $logger;
-    }
+    {LESCRIPT_USE_CASE_CONSTRUCTOR}
 
     public function execute(Request $request)
     {
         try {
             $this->response = (new Builder())
+                {LESCRIPT_WITH_CALLS}
                 ->build();
-        } catch (\Throwable $exception) {
-            $this->logger->error(
-                "Error",
-                [
-                    'exception' => $exception
-                ]
-            );
-            $this->response = new ErrorResponse(new Status(500, "Unknown error"), "Unknown error");
+        }
+        {LESCRIPT_EXCEPTION_CATCHES}
+        catch (\Throwable $exception) {
+            $this->logger->error('Error', ['exception' => $exception]);
+            $this->response = new ErrorResponse(new Status(Status::ERROR_UNKNOWN, 'Unknown error'));
         }
     }
 

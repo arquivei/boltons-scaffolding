@@ -20,7 +20,7 @@ class HandleExceptionsRule
     public function apply(): void
     {
         try {
-            foreach ($this->exceptions as $exception) {
+            foreach ($this->exceptions as $exception => $catchData) {
                 $contents = file_get_contents(__DIR__ . '/../Templates/Exceptions/Exception.template');
                 $contents = preg_replace("/\{LESCRIPT_NAMESPACE\}/", $this->namespace, $contents);
                 $contents = preg_replace("/\{LESCRIPT_EXCEPTION_NAME\}/", $exception, $contents);

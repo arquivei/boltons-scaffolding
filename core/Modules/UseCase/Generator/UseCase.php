@@ -4,6 +4,7 @@ namespace Arquivei\BoltonsScaffolding\Core;
 
 use Arquivei\BoltonsScaffolding\Core\Builders\Builder;
 use Arquivei\BoltonsScaffolding\Core\Entities\Status;
+use Arquivei\BoltonsScaffolding\Core\Exceptions\UseCaseGenerationException;
 use Arquivei\BoltonsScaffolding\Core\Requests\Request;
 use Arquivei\BoltonsScaffolding\Core\Responses\Response;
 use Arquivei\BoltonsScaffolding\Core\Responses\ResponseInterface;
@@ -24,6 +25,13 @@ class UseCase
     {
         $config = json_decode(file_get_contents($request->getConfig()), true);
 
+        if (is_null($config)) {
+            throw new UseCaseGenerationException(
+                'Invalid config: ' . json_last_error() . '(' . json_last_error_msg() . ')'
+            );
+        }
+
+        $projectName = $config['projectName'];
         $target = $config['target'];
         $namespace = $config['namespace'];
         $entities = $config['entities'];
@@ -31,18 +39,18 @@ class UseCase
         $gateways = $config['gateways'];
         $requestProperties = $config['requestProperties'];
         $rules = $config['rules'];
-
+        $statusCodes = $config['statusCodes'];
 
         return (new Builder())
             ->withCreateFoldersRule(new CreateFoldersRule($target))
             ->withHandleBuildersRule(new HandleBuildersRule($namespace, $target, $rules))
-            ->withHandleEntitiesRule(new HandleEntitiesRule($namespace, $target, $entities))
+            ->withHandleEntitiesRule(new HandleEntitiesRule($namespace, $target, $entities, $projectName, $statusCodes))
             ->withHandleExceptionsRule(new HandleExceptionsRule($namespace, $target, $exceptions))
             ->withHandleGatewaysRule(new HandleGatewaysRule($namespace, $target, $gateways))
             ->withHandleRequestsRule(new HandleRequestsRule($namespace, $target, $requestProperties))
             ->withHandleResponsesRule(new HandleResponsesRule($namespace, $target))
             ->withHandleRulesRule(new HandleRulesRule($namespace, $target, $rules))
-            ->withHandleUseCaseRule(new HandleUseCaseRule($namespace, $target))
+            ->withHandleUseCaseRule(new HandleUseCaseRule($namespace, $target, $rules, $exceptions))
             ->build();
     }
 }

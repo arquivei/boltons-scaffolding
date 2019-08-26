@@ -16,6 +16,6 @@ class Builder
     {
         {LESCRIPT_APPLY_RULES}
 
-        return new Response(new Status(200, "Ok"));
+        return new Response(new Status(200, 'Ok'));
     }
 }

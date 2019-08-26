@@ -13,7 +13,6 @@ class HandleBuildersRule
     private $target;
     private $rules;
 
-
     public function __construct(string $namespace, string $target, array $rules)
     {
         $this->utils = new Utils();

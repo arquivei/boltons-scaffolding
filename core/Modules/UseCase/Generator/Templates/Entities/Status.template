@@ -2,24 +2,10 @@
 
 namespace {LESCRIPT_NAMESPACE}\Entities;
 
-class Status
+use Arquivei\{LESCRIPT_PROJECT_NAME}\Core\Generics;
+
+class Status extends Generics\Entities\Status
 {
-    private $code;
-    private $message;
-
-    public function __construct(string $code, string $message)
-    {
-        $this->code = $code;
-        $this->message = $message;
-    }
-
-    public function getCode(): string
-    {
-        return $this->code;
-    }
-
-    public function getMessage(): string
-    {
-        return $this->message;
-    }
+    {LESCRIPT_STATUS_CODES}
 }
+

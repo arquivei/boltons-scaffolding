@@ -74,4 +74,36 @@ class Utils
         $propertyName = lcfirst($className);
         return "\$this->{$propertyName}->apply();";
     }
+
+    public function getWithMethodCall(string $rule, array $gateways)
+    {
+        $gatewayProperties = array_keys($gateways);
+        foreach ($gatewayProperties as &$property) {
+            $property = "\$this->{$property}";
+        }
+        unset($property);
+
+        $gatewayProperties = implode(', ', $gatewayProperties);
+
+        return "->with{$rule}(new {$rule}({$gatewayProperties}))";
+    }
+
+    public function getCatch(
+        string $exception,
+        string $logErrorMessage = 'Error',
+        string $statusErrorCode = 'ERROR_UNKNOWN',
+        string $statusErrorMessage = 'Unknown error'
+    ) {
+        $exceptionName = lcfirst($exception);
+
+        return "catch ({$exception} \${$exceptionName}) {
+            \$this->logger->error('{$logErrorMessage}', ['exception' => \${$exceptionName}]);
+            \$this->response = new ErrorResponse(new Status(Status::{$statusErrorCode}, '${statusErrorMessage}'));
+        }";
+    }
+
+    public function getConstDeclaration(string $const, string $value)
+    {
+        return "const {$const} = '{$value}';";
+    }
 }

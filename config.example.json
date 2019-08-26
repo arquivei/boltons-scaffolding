@@ -19,11 +19,21 @@
     "propertyName": "propertyType"
   },
 
+  // This is where you define outcome code for your status entity
+  "statusCodes": {
+    "ERROR_EXECUTION": "ERROR_EXECUTION",
+    "ERROR_CONST_NAME": "CONST_VALUE"
+  },
+
   // This is where you list the exceptions
-  // The output will be a plain class that extends the \Exception class, so no properties here
-  "exceptions": [
-    "UseCaseException"
-  ],
+  // They now are used for catch blocks in the use case and you can specify error codes and messages
+  "exceptions": {
+    "UseCaseException": {
+      "logErrorMessage": "Error executing use case",
+      "statusErrorCode": "ERROR_EXECUTION",
+      "statusErrorMessage": "Error executing use case"
+    }
+  },
 
   // This is where you specify the gateways
   // The output will be a plain interface with the name, no method specification here
